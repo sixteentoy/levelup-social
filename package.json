@@ -1,7 +1,7 @@
 {
   "name": "mern-social",
   "version": "2.0.0",
-  "description": "A MERN stack based social media application",
+  "description": "A Levelup stack based social media application",
   "author": "Shama Hoque",
   "license": "MIT",
   "keywords": [
@@ -13,9 +13,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/shamahoque/mern-social.git"
+    "url": "https://github.com/sixteentoy/levelup-social.git"
   },
-  "homepage": "https://github.com/shamahoque/mern-social",
+  "homepage": "https://github.com/sixteentoy/levelup-social.git",
   "main": "./dist/server.generated.js",
   "scripts": {
     "development": "nodemon",
@@ -52,7 +52,7 @@
     "formidable": "1.2.2",
     "helmet": "3.22.0",
     "jsonwebtoken": "8.5.1",
-    "lodash": "4.17.15",
+    "lodash": "^4.17.20",
     "mongoose": "5.9.7",
     "react": "16.13.1",
     "react-dom": "16.13.1",
