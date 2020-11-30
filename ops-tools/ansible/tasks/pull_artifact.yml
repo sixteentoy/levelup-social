@@ -1,0 +1,13 @@
+---
+
+- name: pull new container
+  shell: "docker pull sixteentoy/levelup-social:latest"
+
+- name: stop previus container
+  shell: "docker container stop levelup-social || true"
+
+- name: remove previus container
+  shell: "docker container rm levelup-social || true"
+
+- name: run new container
+  shell: "docker run -d --name levelup-social -p 3000:3000 sixteentoy/levelup-social:latest"

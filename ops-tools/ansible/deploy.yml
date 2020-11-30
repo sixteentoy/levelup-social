@@ -1,0 +1,5 @@
+---
+
+- hosts: levelupsocial
+  roles:
+    - role: deploy

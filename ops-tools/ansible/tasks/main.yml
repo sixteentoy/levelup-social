@@ -1,0 +1,8 @@
+---
+
+- include: pull_artifact.yml
+  tags: [pull_artifact]
+
+- include: nginx.yml
+  tags: [nginx]
+

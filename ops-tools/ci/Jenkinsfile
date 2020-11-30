@@ -1,0 +1,18 @@
+#!/usr/bin/env groovy
+
+pipeline {
+
+    agent { label 'docker' }
+
+    stage('Deploy') {
+        steps {
+            ansiblePlaybook(
+                colorized: true,
+                credentialsId: 'ansible-ssh',
+                inventory: "ops-tools/ansible/environment/inventory",
+                playbook: 'ops-tools/ansible/deploy.yml',
+                tags: 'pull_artifact,nginx',
+                )
+        }
+    }
+}
