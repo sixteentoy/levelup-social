@@ -1,0 +1,20 @@
+---
+
+- name: copy nginx sites config
+  template:
+    src: "mern-social.j2"
+    dest: /etc/nginx/sites-available/mern-social
+  become: yes
+
+- name: enable Nginx configuration
+  file: src="/etc/nginx/sites-available/mern-social"
+        path="/etc/nginx/sites-enabled/mern-social"
+        state=link
+  become: yes
+
+- name: reload nginx
+  service:
+    name: nginx
+    state: reloaded
+  become: yes
+
