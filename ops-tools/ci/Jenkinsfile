@@ -4,15 +4,37 @@ pipeline {
 
     agent { label 'docker' }
 
-    stage('Deploy') {
-        steps {
-            ansiblePlaybook(
-                colorized: true,
-                credentialsId: 'ansible-ssh',
-                inventory: "ops-tools/ansible/environment/inventory",
-                playbook: 'ops-tools/ansible/deploy.yml',
-                tags: 'pull_artifact,nginx',
-                )
+    stages {
+        stage('Checkout project') {
+            steps {
+                dir("$WORKSPACE") {
+                    checkout([
+                        $class                           : 'GitSCM',
+                        branches                         : '*/master',
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions                       : [],
+                        submoduleCfg                     : [],
+                        userRemoteConfigs                : [
+                        [
+                          url: 'https://github.com/sixteentoy/levelup-social.git',
+                          credentialsId: "github-sixteentoy"
+                        ]]
+                    ])
+
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                ansiblePlaybook(
+                    colorized: true,
+                    credentialsId: 'ansible-ssh',
+                    inventory: "ops-tools/ansible/environment/inventory",
+                    playbook: 'ops-tools/ansible/deploy.yml',
+                    tags: 'pull_artifact,nginx',
+                    )
+            }
         }
     }
 }
